@@ -1,6 +1,8 @@
 package org.ulco;
 
 abstract public class GraphicsObject {
+
+    protected boolean isGroup=false;
     //constructeur de GraphicsObject, qui a un ID unique, et qui va utiliser la constructeur des classes filles
     public GraphicsObject() {
         m_ID = ++ID.ID;
