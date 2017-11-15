@@ -4,10 +4,12 @@ import java.util.Iterator;
 import java.util.Vector;
 
 public class Document {
+    //constructeur de document de base
     public Document() {
         m_layers = new Vector<Layer>();
     }
 
+    //constructeur de document a partir d'une ligne json
     public Document(String json) {
         m_layers = new Vector<Layer>();
         String str = json.replaceAll("\\s+", "");
@@ -17,6 +19,7 @@ public class Document {
         parseLayers(str.substring(layersIndex + 8, endIndex));
     }
 
+    //constructeur de document avec une grille
     public Document(Point origin, int line, int column, double length) {
         m_layers = new Vector<Layer>();
 
@@ -29,6 +32,7 @@ public class Document {
         }
     }
 
+    //constructeur de document avec des cercles
     public Document(Point center, int number, double radius, double delta) {
         m_layers = new Vector<Layer>();
 
@@ -39,6 +43,7 @@ public class Document {
         }
     }
 
+    //créer un calque
     public Layer createLayer() {
         Layer layer = new Layer();
 
@@ -103,6 +108,7 @@ public class Document {
         }
     }
 
+    //retourner la liste des objets présents depuis un point sur une certaine distance
     public GraphicsObjects select(Point pt, double distance) {
         GraphicsObjects list = new GraphicsObjects();
 
@@ -112,6 +118,7 @@ public class Document {
         return list;
     }
 
+    //créer la ligne json correspondant a toutes les formes ajoutées au document
     public String toJson() {
         String str = "{ type: document, layers: { ";
 

@@ -1,11 +1,13 @@
 package org.ulco;
 
 public class Circle extends GraphicsObject {
+    //constructeur de cercle avec un point de centre et un rayon
     public Circle(Point center, double radius) {
         this.m_center = center;
         this.m_radius = radius;
     }
 
+    //constructeur de cercle en fromat json
     public Circle(String json) {
         String str = json.replaceAll("\\s+", "");
         int centerIndex = str.indexOf("center");
@@ -16,12 +18,14 @@ public class Circle extends GraphicsObject {
         m_radius = Double.parseDouble(str.substring(radiusIndex + 7, endIndex));
     }
 
+    //fonction qui crée un nouveau cercle par recopie
     public GraphicsObject copy() {
         return new Circle(m_center.copy(), m_radius);
     }
 
     public Point getCenter() { return m_center; }
 
+    //retourne vrai si la taille du segment séparant le centre et le point est <= a la distance demandée
     public boolean isClosed(Point pt, double distance) {
         return Math.sqrt((m_center.getX() - pt.getX()) * (m_center.getX() - pt.getX()) +
                 ((m_center.getY() - pt.getY()) * (m_center.getY() - pt.getY()))) <= distance;
@@ -29,10 +33,12 @@ public class Circle extends GraphicsObject {
 
     void move(Point delta) { m_center.move(delta); }
 
+    //crée une ligne json en utilisant le toJson du point
     public String toJson() {
         return "{ type: circle, center: " + m_center.toJson() + ", radius: " + this.m_radius + " }";
     }
 
+    //utilise le toString du point
     public String toString() {
         return "circle[" + m_center.toString() + "," + m_radius + "]";
     }

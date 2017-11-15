@@ -1,6 +1,7 @@
 package org.ulco;
 
 public class JSON {
+    //fonction pour reconnaitre quel type de forme il s'agit pour recréer la ligne json correspondante
     static public GraphicsObject parse(String json) {
         GraphicsObject o = null;
         String str = json.replaceAll("\\s+", "");

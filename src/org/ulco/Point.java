@@ -1,11 +1,14 @@
 package org.ulco;
 
 public class Point {
+
+    //constructeur de point a partir de 2 coordonnees
     public Point(double x, double y) {
         m_x = x;
         m_y = y;
     }
 
+    //constrcuteur de point a partir d'une ligne json
     public Point(String json) {
         String str = json.replaceAll("\\s+","");
         int xIndex = str.indexOf("x");
@@ -17,6 +20,7 @@ public class Point {
         m_y = Double.parseDouble(str.substring(yIndex + 2, endIndex));
     }
 
+    //créer un point par copie
     public Point copy() {
         return new Point(m_x, m_y);
     }
@@ -29,6 +33,7 @@ public class Point {
         return m_y;
     }
 
+    //bouger le point à une nouvelle coordonnée delta
     void move(Point delta)
     {
         m_x += delta.getX();

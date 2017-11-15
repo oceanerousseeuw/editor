@@ -3,11 +3,12 @@ package org.ulco;
 import java.util.Vector;
 
 public class Layer {
+    //constructeur de calque
     public Layer() {
         m_list = new Vector<GraphicsObject>();
         m_ID = ++ID.ID;
     }
-
+    //constructeur de calque avec une ligne json
     public Layer(String json) {
         m_list= new Vector<GraphicsObject>();
         String str = json.replaceAll("\\s+","");
@@ -17,6 +18,7 @@ public class Layer {
         parseObjects(str.substring(objectsIndex + 9, endIndex - 1));
     }
 
+    //ajouter une forme à la liste des formes présentes sur le calque
     public void add(GraphicsObject o) {
         m_list.add(o);
     }
@@ -77,6 +79,7 @@ public class Layer {
         }
     }
 
+    //créer un GraphicsObjects qui contient tous les objets présents sur le calque
     public GraphicsObjects select(Point pt, double distance) {
         GraphicsObjects list = new GraphicsObjects();
 
@@ -88,6 +91,7 @@ public class Layer {
         return list;
     }
 
+    //créer la ligne json permettant de créer un calque
     public String toJson() {
         String str = "{ type: layer, objects : { ";
 

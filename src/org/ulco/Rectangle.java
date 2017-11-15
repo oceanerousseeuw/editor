@@ -1,12 +1,14 @@
 package org.ulco;
 
 public class Rectangle extends GraphicsObject {
+    //constructeur de rectangle avec un point central, une hauteur et une largeur
     public Rectangle(Point center, double height, double width) {
         this.m_origin = center;
         this.m_height = height;
         this.m_width = width;
     }
 
+    //constructeur de rectangle a partir d'une ligne json
     public Rectangle(String json) {
         String str = json.replaceAll("\\s+","");
         int centerIndex = str.indexOf("center");
@@ -19,19 +21,23 @@ public class Rectangle extends GraphicsObject {
         m_width = Double.parseDouble(str.substring(widthIndex + 6, endIndex));
     }
 
+    //création rectangle par copie, retrourne un GraphicsObject car rectangle est fille de GraphicsObject
     public GraphicsObject copy() {
         return new Rectangle(m_origin.copy(), m_height, m_width);
     }
 
     public Point getOrigin() { return m_origin; }
 
+
     public boolean isClosed(Point pt, double distance) {
         Point center = new Point(m_origin.getX() + m_width / 2, m_origin.getY() + m_height / 2);
 
+        //retourne vrai si la taille du segment séparant le centre et le point est <= a la distance demandée
         return Math.sqrt((center.getX() - pt.getX()) * (center.getX() - pt.getX()) +
                 ((center.getY() - pt.getY()) * (center.getY() - pt.getY()))) <= distance;
     }
 
+    //deplacer le point central du rectangle a une nouvelle coordonnée delta
     void move(Point delta) { m_origin.move(delta); }
 
     public String toJson() {

@@ -1,11 +1,13 @@
 package org.ulco;
 
 public class Square extends GraphicsObject {
+    //constructeur de carré avec un centre et une taille
     public Square(Point center, double length) {
         this.m_origin = center;
         this.m_length = length;
     }
 
+    //constructeur de carré a partir d'une ligne json
     public Square(String json) {
         String str = json.replaceAll("\\s+","");
         int centerIndex = str.indexOf("center");
@@ -16,12 +18,14 @@ public class Square extends GraphicsObject {
         m_length = Double.parseDouble(str.substring(lengthIndex + 7, endIndex));
     }
 
+    //création carré par copie, retrourne un GraphicsObject car carré est fille de GraphicsObject
     public GraphicsObject copy() {
         return new Square(m_origin.copy(), m_length);
     }
 
     public Point getOrigin() { return m_origin; }
 
+    //retourne vrai si la taille du segment séparant le centre et le point est <= a la distance demandée
     public boolean isClosed(Point pt, double distance) {
         Point center = new Point(m_origin.getX() + m_length / 2, m_origin.getY() + m_length / 2);
 
@@ -29,6 +33,7 @@ public class Square extends GraphicsObject {
                 ((center.getY() - pt.getY()) * (center.getY() - pt.getY()))) <= distance;
     }
 
+    //déplace le centre du carré a une nouvelle coordonnée
     void move(Point delta) { m_origin.move(delta); }
 
     public String toJson() {

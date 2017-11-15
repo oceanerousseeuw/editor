@@ -4,12 +4,14 @@ import java.util.Vector;
 
 public class Group {
 
+    //constructeur de Group, qui aura un nouvel id unique a sa création
     public Group() {
         m_groupList = new  Vector<Group>();
         m_objectList = new Vector<GraphicsObject>();
         m_ID = ++ID.ID;
     }
 
+    //constructeur de Group a partir d'une ligne json
     public Group(String json) {
         m_groupList = new  Vector<Group>();
         m_objectList = new Vector<GraphicsObject>();
@@ -22,6 +24,7 @@ public class Group {
         parseGroups(str.substring(groupsIndex + 8, endIndex - 1));
     }
 
+    //fonction qui va ajouter un group d'objet ou un GraphicObject au Group
     public void add(Object object) {
         if (object instanceof Group) {
             addGroup((Group)object);
@@ -30,14 +33,17 @@ public class Group {
         }
     }
 
+    //ajouter un Group d'objets
     private void addGroup(Group group) {
         m_groupList.add(group);
     }
 
+    //ajouter un objet seul
     private void addObject(GraphicsObject object) {
         m_objectList.add(object);
     }
 
+    //faire une copie du Group en faisant attention a si il contient des Group ou des GraphicsObjet
     public Group copy() {
         Group g = new Group();
 
@@ -58,6 +64,7 @@ public class Group {
         return m_ID;
     }
 
+    //on va bouger le group élément par élément grace a la fonction fille correspondante
     public void move(Point delta) {
         Group g = new Group();
 
@@ -136,6 +143,7 @@ public class Group {
         }
     }
 
+    //connaitre le nombre d'objets qu'ils y a en tous en prenant des les groups
     public int size() {
         int size = m_objectList.size();
 
