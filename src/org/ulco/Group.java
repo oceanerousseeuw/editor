@@ -6,7 +6,6 @@ public class Group extends GraphicsObject {
 
     //constructeur de Group, qui aura un nouvel id unique a sa création
     public Group() {
-        m_groupList = new Vector<Group>();
         m_objectList = new Vector<GraphicsObject>();
         m_ID = ++ID.ID;
         isGroup = true;
@@ -14,7 +13,6 @@ public class Group extends GraphicsObject {
 
     //constructeur de Group a partir d'une ligne json
     public Group(String json) {
-        m_groupList = new Vector<Group>();
         m_objectList = new Vector<GraphicsObject>();
         isGroup = true;
         String str = json.replaceAll("\\s+", "");
@@ -191,7 +189,6 @@ public class Group extends GraphicsObject {
         return str + "]]";
     }
 
-    private Vector<Group> m_groupList;
     private Vector<GraphicsObject> m_objectList;
     private int m_ID;
 }
