@@ -6,12 +6,12 @@ public class Layer {
     //constructeur de calque
     public Layer() {
         m_list = new Vector<GraphicsObject>();
-        m_ID = ++ID.ID;
+        m_ID = ID.getInstance().getId();
     }
     //constructeur de calque avec une ligne json
     public Layer(String json) {
-        m_list= new Vector<GraphicsObject>();
-        String str = json.replaceAll("\\s+","");
+        m_list = new Vector<GraphicsObject>();
+        String str = json.replaceAll("\\s+", "");
         int objectsIndex = str.indexOf("objects");
         int endIndex = str.lastIndexOf("}");
 

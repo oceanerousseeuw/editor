@@ -8,13 +8,13 @@ public class LayerTest extends TestCase {
     @Test
     public void testType() throws Exception {
         Document document = new Document();
-        int oldID = ID.ID;
+        int oldID = ID.getInstance().getId()-1;
         Layer layer = document.createLayer();
 
         layer.add(new Square(new Point(2, 8), 10));
 
-        assertEquals(layer.getID(), oldID + 1);
-        assertEquals(layer.get(0).getID(), oldID + 2);
+        assertEquals(layer.getID(), oldID + 2);
+        assertEquals(layer.get(0).getID(), oldID + 3);
     }
 
     @Test

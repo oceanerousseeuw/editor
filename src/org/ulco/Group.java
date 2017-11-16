@@ -7,7 +7,7 @@ public class Group extends GraphicsObject {
     //constructeur de Group, qui aura un nouvel id unique a sa création
     public Group() {
         m_objectList = new Vector<GraphicsObject>();
-        m_ID = ++ID.ID;
+        m_ID = ID.getInstance().getId();
         isGroup = true;
     }
 
