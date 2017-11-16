@@ -1,5 +1,7 @@
 package org.ulco;
 
+import java.lang.reflect.Constructor;
+
 public class JSON {
     //fonction pour reconnaitre quel type de forme il s'agit pour recréer la ligne json correspondante
     static public GraphicsObject parse(String json) {
@@ -7,12 +9,12 @@ public class JSON {
         String str = json.replaceAll("\\s+", "");
         String type = str.substring(str.indexOf("type") + 5, str.indexOf(","));
 
-        if (type.compareTo("square") == 0) {
-            o = new Square(str);
-        } else if (type.compareTo("rectangle") == 0) {
-            o = new Rectangle(str);
-        } else if (type.compareTo("circle") == 0) {
-            o = new Circle(str);
+        try{
+            String className = "org.ulco." + type.substring(0,1).toUpperCase() + type.substring(1);
+            Constructor c = Class.forName(className).getConstructor(String.class);
+            o= (GraphicsObject) c.newInstance(str);
+        }catch(Exception e){
+            System.out.println("probleme de class json");
         }
         return o;
     }
