@@ -110,12 +110,8 @@ public class Document {
 
     //retourner la liste des objets présents depuis un point sur une certaine distance
     public GraphicsObjects select(Point pt, double distance) {
-        GraphicsObjects list = new GraphicsObjects();
+        return Utility.selectInDoc(pt, distance, m_layers);
 
-        for (Layer layer : m_layers) {
-            list.addAll(layer.select(pt, distance));
-        }
-        return list;
     }
 
     //créer la ligne json correspondant a toutes les formes ajoutées au document

@@ -81,14 +81,7 @@ public class Layer {
 
     //créer un GraphicsObjects qui contient tous les objets présents sur le calque
     public GraphicsObjects select(Point pt, double distance) {
-        GraphicsObjects list = new GraphicsObjects();
-
-        for (GraphicsObject object : m_list) {
-            if (object.isClosed(pt, distance)) {
-                list.add(object);
-            }
-        }
-        return list;
+        return Utility.selectInLayer(pt, distance, m_list);
     }
 
     //créer la ligne json permettant de créer un calque
