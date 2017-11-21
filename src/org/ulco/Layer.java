@@ -13,11 +13,13 @@ public class Layer {
         m_list = new Vector<GraphicsObject>();
         String str = json.replaceAll("\\s+", "");
         int objectsIndex = str.indexOf("objects");
-        int groupsIndex = str.indexOf("groups");
         int endIndex = str.lastIndexOf("}");
 
         parseObjects(str.substring(objectsIndex + 9, endIndex - 1));
-        parseGroups(str.substring(groupsIndex + 8, endIndex - 1));
+        if(str.contains("groups")) {
+            int groupsIndex = str.indexOf("groups");
+            parseGroups(str.substring(groupsIndex + 8, endIndex - 1));
+        }
     }
 
     //ajouter une forme à la liste des formes présentes sur le calque
