@@ -31,10 +31,7 @@ public class Rectangle extends GraphicsObject {
 
     public boolean isClosed(Point pt, double distance) {
         Point center = new Point(m_origin.getX() + m_width / 2, m_origin.getY() + m_height / 2);
-
-        //retourne vrai si la taille du segment séparant le centre et le point est <= a la distance demandée
-        return Math.sqrt((center.getX() - pt.getX()) * (center.getX() - pt.getX()) +
-                ((center.getY() - pt.getY()) * (center.getY() - pt.getY()))) <= distance;
+        return Utility.isClosed(center, pt, distance);
     }
 
     //deplacer le point central du rectangle a une nouvelle coordonnée delta

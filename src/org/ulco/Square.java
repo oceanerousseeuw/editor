@@ -28,9 +28,7 @@ public class Square extends GraphicsObject {
     //retourne vrai si la taille du segment séparant le centre et le point est <= a la distance demandée
     public boolean isClosed(Point pt, double distance) {
         Point center = new Point(m_origin.getX() + m_length / 2, m_origin.getY() + m_length / 2);
-
-        return Math.sqrt((center.getX() - pt.getX()) * (center.getX() - pt.getX()) +
-                ((center.getY() - pt.getY()) * (center.getY() - pt.getY()))) <= distance;
+        return Utility.isClosed(center, pt, distance);
     }
 
     //déplace le centre du carré a une nouvelle coordonnée

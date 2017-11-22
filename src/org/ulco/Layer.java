@@ -15,10 +15,10 @@ public class Layer {
         int objectsIndex = str.indexOf("objects");
         int endIndex = str.lastIndexOf("}");
 
-        Utility.parseObjects(str.substring(objectsIndex + 9, endIndex - 1), m_list);
+        Utility.parse(str.substring(objectsIndex + 9, endIndex - 1), m_list, false);
         if(str.contains("groups")) {
             int groupsIndex = str.indexOf("groups");
-            Utility.parseGroups(str.substring(groupsIndex + 8, endIndex - 1), m_list);
+            Utility.parse(str.substring(groupsIndex + 8, endIndex - 1), m_list, true);
         }
     }
 

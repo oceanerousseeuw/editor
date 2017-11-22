@@ -20,8 +20,10 @@ public class Group extends GraphicsObject {
         int groupsIndex = str.indexOf("groups");
         int endIndex = str.lastIndexOf("}");
 
-        Utility.parseObjects(str.substring(objectsIndex + 9, groupsIndex - 2), m_objectList);
-        Utility.parseGroups(str.substring(groupsIndex + 8, endIndex - 1), m_objectList);
+        if(str.contains("groups")) {
+            Utility.parse(str.substring(groupsIndex + 8, endIndex - 1), m_objectList, isGroup);
+        }
+        Utility.parse(str.substring(objectsIndex + 9, groupsIndex - 2), m_objectList, false);
     }
 
     //fonction qui va ajouter un GraphicObject au Group

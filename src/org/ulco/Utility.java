@@ -72,26 +72,7 @@ public class Utility {
         }
     }
 
-    static public void parseGroups(String groupsStr, Vector<GraphicsObject> m_list) {
-        while (!groupsStr.isEmpty()) {
-            int separatorIndex = Utility.searchSeparator(groupsStr);
-            String groupStr;
-
-            if (separatorIndex == -1) {
-                groupStr = groupsStr;
-            } else {
-                groupStr = groupsStr.substring(0, separatorIndex);
-            }
-            m_list.add(JSON.parseGroup(groupStr));
-            if (separatorIndex == -1) {
-                groupsStr = "";
-            } else {
-                groupsStr = groupsStr.substring(separatorIndex + 1);
-            }
-        }
-    }
-
-    static public void parseObjects(String objectsStr, Vector<GraphicsObject> m_list) {
+    static public void parse(String objectsStr, Vector<GraphicsObject> m_list, boolean isGroup){
         while (!objectsStr.isEmpty()) {
             int separatorIndex = Utility.searchSeparator(objectsStr);
             String objectStr;
@@ -101,7 +82,11 @@ public class Utility {
             } else {
                 objectStr = objectsStr.substring(0, separatorIndex);
             }
-            m_list.add(JSON.parse(objectStr));
+            if(isGroup){
+                m_list.add(JSON.parseGroup(objectStr));
+            }else{
+                m_list.add(JSON.parse(objectStr));
+            }
             if (separatorIndex == -1) {
                 objectsStr = "";
             } else {
@@ -109,5 +94,12 @@ public class Utility {
             }
         }
     }
+
+    static public boolean isClosed(Point center, Point pt, double distance){
+
+        return Math.sqrt((center.getX() - pt.getX()) * (center.getX() - pt.getX()) +
+                ((center.getY() - pt.getY()) * (center.getY() - pt.getY()))) <= distance;
+    }
+
 
 }

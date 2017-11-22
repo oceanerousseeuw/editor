@@ -27,8 +27,7 @@ public class Circle extends GraphicsObject {
 
     //retourne vrai si la taille du segment séparant le centre et le point est <= a la distance demandée
     public boolean isClosed(Point pt, double distance) {
-        return Math.sqrt((m_center.getX() - pt.getX()) * (m_center.getX() - pt.getX()) +
-                ((m_center.getY() - pt.getY()) * (m_center.getY() - pt.getY()))) <= distance;
+        return Utility.isClosed(m_center, pt, distance);
     }
 
     void move(Point delta) { m_center.move(delta); }
