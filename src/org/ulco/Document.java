@@ -82,17 +82,7 @@ public class Document {
 
     //créer la ligne json correspondant a toutes les formes ajoutées au document
     public String toJson() {
-        String str = "{ type: document, layers: { ";
-
-        for (int i = 0; i < m_layers.size(); ++i) {
-            Layer element = m_layers.elementAt(i);
-
-            str += element.toJson();
-            if (i < m_layers.size() - 1) {
-                str += ", ";
-            }
-        }
-        return str + " } }";
+        return JSON.toJsonDoc(m_layers);
     }
 
     private Vector<Layer> m_layers;

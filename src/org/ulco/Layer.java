@@ -46,25 +46,7 @@ public class Layer {
 
     //créer la ligne json permettant de créer un calque
     public String toJson() {
-        String str = "{ type: layer, objects : { ";
-
-        for (int i = 0; i < m_list.size(); ++i) {
-            GraphicsObject element = m_list.elementAt(i);
-            if (!element.isGroup) {
-                str += element.toJson();
-                if (i < m_list.size() - 1) {
-                    str += ", ";
-                }
-            }
-        }
-
-        for (int i = 0; i < m_list.size(); ++i) {
-            GraphicsObject element = m_list.elementAt(i);
-            if (element.isGroup) {
-                str += element.toJson();
-            }
-        }
-        return str + " } }";
+        return JSON.toJsonLayer(m_list);
     }
 
     private Vector<GraphicsObject> m_list;

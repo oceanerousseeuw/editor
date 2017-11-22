@@ -41,7 +41,7 @@ public class Point {
     }
 
     public String toJson() {
-        return "{ type: point, x: " + m_x + ", y: " + this.m_y + " }";
+        return JSON.toJsonPoint(m_x, m_y);
     }
 
     public String toString() {

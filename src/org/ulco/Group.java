@@ -77,26 +77,7 @@ public class Group extends GraphicsObject {
     }
 
     public String toJson() {
-        String str = "{ type: group, objects : { ";
-
-        for (int i = 0; i < m_objectList.size(); ++i) {
-            GraphicsObject element = m_objectList.elementAt(i);
-            if (!element.isGroup) {
-                str += element.toJson();
-                if (i < m_objectList.size() - 1) {
-                    str += ", ";
-                }
-            }
-        }
-        str += " }, groups : { ";
-
-        for (int i = 0; i < m_objectList.size(); ++i) {
-            GraphicsObject element = m_objectList.elementAt(i);
-            if (element.isGroup) {
-                str += element.toJson();
-            }
-        }
-        return str + " } }";
+        return JSON.toJsonGroup(m_objectList);
     }
 
     public String toString() {

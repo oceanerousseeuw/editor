@@ -34,7 +34,7 @@ public class Circle extends GraphicsObject {
 
     //crée une ligne json en utilisant le toJson du point
     public String toJson() {
-        return "{ type: circle, center: " + m_center.toJson() + ", radius: " + this.m_radius + " }";
+        return JSON.toJsonCircle(m_center, m_radius);
     }
 
     //utilise le toString du point

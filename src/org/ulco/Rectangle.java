@@ -38,7 +38,7 @@ public class Rectangle extends GraphicsObject {
     void move(Point delta) { m_origin.move(delta); }
 
     public String toJson() {
-        return "{ type: rectangle, center: " + m_origin.toJson() + ", height: " + this.m_height + ", width: " + this.m_width + " }";
+        return JSON.toJsonRect(m_origin, m_height, m_width);
     }
 
     public String toString() {

@@ -35,7 +35,7 @@ public class Square extends GraphicsObject {
     void move(Point delta) { m_origin.move(delta); }
 
     public String toJson() {
-        return "{ type: square, center: " + m_origin.toJson() + ", length: " + this.m_length + " }";
+        return JSON.toJsonSquare(m_origin, m_length);
     }
 
     public String toString() {
