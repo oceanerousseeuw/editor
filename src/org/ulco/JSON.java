@@ -32,6 +32,9 @@ public class JSON {
         return new Document(json);
     }
 
+    static public String remplace(String json){
+        return json.replaceAll("\\s+", "");
+    }
     static public String toJsonDoc(Vector<Layer> m_layers){
         String str = "{ type: document, layers: { ";
 
@@ -46,31 +49,13 @@ public class JSON {
         return str + " } }";
     }
 
-    static public String toJsonGroup(Vector<GraphicsObject> m_objectList){
-        String str = "{ type: group, objects : { ";
-        for (int i = 0; i < m_objectList.size(); ++i) {
-            GraphicsObject element = m_objectList.elementAt(i);
-            if (!element.isGroup) {
-                str += element.toJson();
-                if (i < m_objectList.size() - 1) {
-                    str += ", ";
-                }
-            }
+    static public String toJsonGroupAndLayer(Vector<GraphicsObject> m_list, String type){
+        String str = "";
+        if(type.equals("group")){
+            str = "{ type: group, objects : { ";
+        }else if(type.equals("layer")){
+            str = "{ type: layer, objects : { ";
         }
-        str += " }, groups : { ";
-
-        for (int i = 0; i < m_objectList.size(); ++i) {
-            GraphicsObject element = m_objectList.elementAt(i);
-            if (element.isGroup) {
-                str += element.toJson();
-            }
-        }
-        return str + " } }";
-    }
-
-    static public String toJsonLayer(Vector<GraphicsObject> m_list){
-        String str = "{ type: layer, objects : { ";
-
         for (int i = 0; i < m_list.size(); ++i) {
             GraphicsObject element = m_list.elementAt(i);
             if (!element.isGroup) {
@@ -81,6 +66,9 @@ public class JSON {
             }
         }
 
+        if(type.equals("group")){
+            str += " }, groups : { ";
+        }
         for (int i = 0; i < m_list.size(); ++i) {
             GraphicsObject element = m_list.elementAt(i);
             if (element.isGroup) {
@@ -98,11 +86,24 @@ public class JSON {
         return "{ type: rectangle, center: " + m_origin.toJson() + ", height: " + m_height + ", width: " + m_width + " }";
     }
 
-    static public String toJsonSquare(Point m_origin, double m_length){
-        return "{ type: square, center: " + m_origin.toJson() + ", length: " + m_length + " }";
-    }
+    static public String toJsonSquareAndCircle(Point m_center, double m_width, String type){
+        String str = "";
+        if(type.equals("circle")){
+            str += "{ type: circle, center: ";
+        }else if(type.equals("square")){
+            str += "{ type: square, center: ";
+        }
 
-    static public String toJsonCircle(Point m_center, double m_radius){
-        return "{ type: circle, center: " + m_center.toJson() + ", radius: " + m_radius + " }";
+        str += m_center.toJson();
+
+        if(type.equals("square")){
+            str += ", length: ";
+        }else if(type.equals("circle")){
+            str += ", radius: ";
+        }
+
+        str += m_width + " }";
+
+        return str;
     }
 }

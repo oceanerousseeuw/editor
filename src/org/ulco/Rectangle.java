@@ -10,7 +10,7 @@ public class Rectangle extends GraphicsObject {
 
     //constructeur de rectangle a partir d'une ligne json
     public Rectangle(String json) {
-        String str = json.replaceAll("\\s+","");
+        String str = JSON.remplace(json);
         int centerIndex = str.indexOf("center");
         int heightIndex = str.indexOf("height");
         int widthIndex = str.indexOf("width");

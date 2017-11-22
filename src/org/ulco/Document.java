@@ -12,7 +12,7 @@ public class Document {
     //constructeur de document a partir d'une ligne json
     public Document(String json) {
         m_layers = new Vector<Layer>();
-        String str = json.replaceAll("\\s+", "");
+        String str = JSON.remplace(json);
         int layersIndex = str.indexOf("layers");
         int endIndex = str.lastIndexOf("}");
 

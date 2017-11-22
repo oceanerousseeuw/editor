@@ -10,7 +10,7 @@ public class Point {
 
     //constrcuteur de point a partir d'une ligne json
     public Point(String json) {
-        String str = json.replaceAll("\\s+","");
+        String str = JSON.remplace(json);
         int xIndex = str.indexOf("x");
         int separatorIndex = str.indexOf(",", xIndex + 2);
         int yIndex = str.lastIndexOf("y");

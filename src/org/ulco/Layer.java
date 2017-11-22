@@ -46,9 +46,10 @@ public class Layer {
 
     //créer la ligne json permettant de créer un calque
     public String toJson() {
-        return JSON.toJsonLayer(m_list);
+        return JSON.toJsonGroupAndLayer(m_list, type);
     }
 
     private Vector<GraphicsObject> m_list;
     private int m_ID;
+    private String type = "layer";
 }

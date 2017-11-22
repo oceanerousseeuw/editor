@@ -15,7 +15,7 @@ public class Group extends GraphicsObject {
     public Group(String json) {
         m_objectList = new Vector<GraphicsObject>();
         isGroup = true;
-        String str = json.replaceAll("\\s+", "");
+        String str = JSON.remplace(json);
         int objectsIndex = str.indexOf("objects");
         int groupsIndex = str.indexOf("groups");
         int endIndex = str.lastIndexOf("}");
@@ -77,7 +77,7 @@ public class Group extends GraphicsObject {
     }
 
     public String toJson() {
-        return JSON.toJsonGroup(m_objectList);
+        return JSON.toJsonGroupAndLayer(m_objectList, type);
     }
 
     public String toString() {
@@ -111,4 +111,5 @@ public class Group extends GraphicsObject {
 
     private Vector<GraphicsObject> m_objectList;
     private int m_ID;
+    private String type = "group";
 }

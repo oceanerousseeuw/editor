@@ -9,7 +9,7 @@ public class Square extends GraphicsObject {
 
     //constructeur de carré a partir d'une ligne json
     public Square(String json) {
-        String str = json.replaceAll("\\s+","");
+        String str = JSON.remplace(json);
         int centerIndex = str.indexOf("center");
         int lengthIndex = str.indexOf("length");
         int endIndex = str.lastIndexOf("}");
@@ -35,7 +35,7 @@ public class Square extends GraphicsObject {
     void move(Point delta) { m_origin.move(delta); }
 
     public String toJson() {
-        return JSON.toJsonSquare(m_origin, m_length);
+        return JSON.toJsonSquareAndCircle(m_origin, m_length, type);
     }
 
     public String toString() {
@@ -44,4 +44,5 @@ public class Square extends GraphicsObject {
 
     private final Point m_origin;
     private final double m_length;
+    private String type = "square";
 }
