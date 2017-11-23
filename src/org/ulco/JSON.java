@@ -86,6 +86,11 @@ public class JSON {
         return "{ type: rectangle, center: " + m_origin.toJson() + ", height: " + m_height + ", width: " + m_width + " }";
     }
 
+    static public String toJsonTrian(Point m_origin, double m_height, double m_width){
+        return "{ type: triangle, corner: " + m_origin.toJson() + ", height: " + m_height + ", width: " + m_width + " }";
+    }
+
+
     static public String toJsonSquareAndCircle(Point m_center, double m_width, String type){
         String str = "";
         if(type.equals("circle")){
