@@ -102,4 +102,10 @@ public class Utility {
     }
 
 
+    static public String randomColor(){
+        String colors[] = {"blue", "red", "green", "violet", "yellow", "black", "white"};
+
+        int rand = (int)(Math.random() * ((colors.length)));
+        return colors[rand];
+    }
 }

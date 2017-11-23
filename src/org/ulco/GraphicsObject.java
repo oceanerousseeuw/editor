@@ -6,6 +6,8 @@ abstract public class GraphicsObject {
     //constructeur de GraphicsObject, qui a un ID unique, et qui va utiliser la constructeur des classes filles
     public GraphicsObject() {
         m_ID = ID.getInstance().getId();
+        m_bgColor = Utility.randomColor();
+        m_borderColor = Utility.randomColor();
     }
 
     //créer un GraphicsObject par copie, utilisera la meme fonction dans la classe fille correspondante
@@ -14,6 +16,10 @@ abstract public class GraphicsObject {
     public int getID() {
         return m_ID;
     }
+
+    public String getM_bgColor(){ return m_bgColor;}
+
+    public String getM_borderColor() { return m_borderColor;}
 
     //retourne si la forme est près d'une point, utilise la fonction fille correspondante
     abstract boolean isClosed(Point pt, double distance);
@@ -26,4 +32,7 @@ abstract public class GraphicsObject {
     abstract public String toString();
 
     private int m_ID;
+    private String m_bgColor;
+    private String m_borderColor;
+
 }
